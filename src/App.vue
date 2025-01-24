@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 import { useStylesStore } from './store/stylesStore';
+import Article from './components/article/Article.vue';
 
 const store = useStylesStore();
 const fontFamily = store.fontFamily;
@@ -21,9 +22,10 @@ const styleObject = reactive({
 <template>
   <main>
     <div
-      className="main"
+      class="main"
       :style="styleObject"
     ></div>
+    <Article />
   </main>
 </template>
 
