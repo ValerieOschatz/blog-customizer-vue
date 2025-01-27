@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 import { useStylesStore } from './store/stylesStore';
+import ArticleParamsForm from './components/article-params-form/ArticleParamsForm.vue';
 import Article from './components/article/Article.vue';
 
 const store = useStylesStore();
@@ -25,6 +26,8 @@ const styleObject = reactive({
       class="main"
       :style="styleObject"
     ></div>
+    
+    <ArticleParamsForm />
     <Article />
   </main>
 </template>
