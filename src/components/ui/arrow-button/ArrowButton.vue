@@ -7,7 +7,7 @@ interface IArrowButtonProps {
 	isOpen: boolean
 }
 
-const props = defineProps<IArrowButtonProps>();
+defineProps<IArrowButtonProps>();
 const emit = defineEmits(['onClick']);
 </script>
 
@@ -16,13 +16,13 @@ const emit = defineEmits(['onClick']);
     role='button'
     aria-label='Открыть/Закрыть форму параметров статьи'
     tabIndex="0"
-    :class="`containerBtn ${props.isOpen && 'containerBtn_open'}`"
+    :class="`containerBtn ${isOpen && 'containerBtn_open'}`"
     @click="$emit('onClick')"
   >
     <img
       :src="arrow"
       alt='иконка стрелочки'
-      :class="`arrow ${props.isOpen && 'arrow_open'}`"
+      :class="`arrow ${isOpen && 'arrow_open'}`"
     />
   </div>
 </template>

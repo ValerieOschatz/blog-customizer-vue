@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useStylesStore } from '../../store/stylesStore';
 import ArrowButton from '../ui/arrow-button/ArrowButton.vue';
 import Text from '../ui/text/Text.vue';
+import Select from '../ui/select/Select.vue';
+import { fontFamilyOptions } from '../../utils/data/articleProps';
 
 const isOpen = ref(false);
+const selectedOptions = useStylesStore();
 
 const handleClickArrow = () => {
   isOpen.value = !isOpen.value;
 }
 
 const handleFormSubmit = () => {}
+const handleSetFont = () => {}
 </script>
 
 <template>
@@ -23,17 +28,12 @@ const handleFormSubmit = () => {}
         задайте параметры
       </Text>
 
-      <!-- <Select
-        title={'шрифт'}
-        options={fontFamilyOptions}
-        selected={selectedOptions.fontFamilyOption}
-        onChange={(font) => {
-          setSelectedOptions({
-            ...selectedOptions,
-            fontFamilyOption: font,
-          });
-        }}
-      /> -->
+      <Select
+        title="шрифт"
+        :options="fontFamilyOptions"
+        :selected="selectedOptions.fontFamily"
+        @onChange="handleSetFont"
+      />
 
       <!-- <RadioGroup
         name={'FontSize'}
