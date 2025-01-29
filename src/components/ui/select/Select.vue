@@ -7,11 +7,10 @@ import { isFontFamilyClass } from './helpers/isFontFamilyClass';
 import type { OptionType } from '../../../utils/data/articleProps';
 
 interface ISelectProps {
-	selected: OptionType | null;
-	options: OptionType[];
-	placeholder?: string;
-	onClose?: () => void;
-	title?: string;
+	selected: OptionType | null,
+	options: OptionType[],
+	placeholder?: string,
+	title?: string
 }
 
 const props = defineProps<ISelectProps>();

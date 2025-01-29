@@ -4,7 +4,16 @@ import { useStylesStore } from '../../store/stylesStore';
 import ArrowButton from '../ui/arrow-button/ArrowButton.vue';
 import Text from '../ui/text/Text.vue';
 import Select from '../ui/select/Select.vue';
-import { fontFamilyOptions } from '../../utils/data/articleProps';
+import RadioGroup from '../ui/radio-group/RadioGroup.vue';
+import Separator from '../ui/separator/Separator.vue';
+
+import { 
+  fontFamilyOptions,
+  fontSizeOptions,
+  fontColors,
+  backgroundColors,
+  contentWidthArr
+} from '../../utils/data/articleProps';
 
 const isOpen = ref(false);
 const selectedOptions = useStylesStore();
@@ -15,6 +24,11 @@ const handleClickArrow = () => {
 
 const handleFormSubmit = () => {}
 const handleSetFont = () => {}
+const handleSetFontSize = () => {}
+const handleSetFontColor = () => {}
+const handleSetBgColor = () => {}
+const handleSetContainerWidth = () => {}
+const handleFormReset = () => {}
 </script>
 
 <template>
@@ -35,60 +49,40 @@ const handleSetFont = () => {}
         @onChange="handleSetFont"
       />
 
-      <!-- <RadioGroup
-        name={'FontSize'}
-        title={'размер шрифта'}
-        options={fontSizeOptions}
-        selected={selectedOptions.fontSizeOption}
-        onChange={(fontSizeOption) => {
-          setSelectedOptions({
-            ...selectedOptions,
-            fontSizeOption: fontSizeOption,
-          });
-        }}
-      /> -->
+      <RadioGroup
+        name="FontSize"
+        title="размер шрифта"
+        :options="fontSizeOptions"
+        :selected="selectedOptions.fontSize"
+        @onChange="handleSetFontSize"
+      />
 
-      <!-- <Select
-        title={'цвет шрифта'}
-        options={fontColors}
-        selected={selectedOptions.fontColor}
-        onChange={(fontColor) => {
-          setSelectedOptions({
-            ...selectedOptions,
-            fontColor: fontColor,
-          });
-        }}
-      /> -->
+      <Select
+        title="цвет шрифта"
+        :options="fontColors"
+        :selected="selectedOptions.fontColor"
+        @onChange="handleSetFontColor"
+      />
 
-      <!-- <Separator /> -->
+      <Separator />
 
-      <!-- <Select
-        title={'цвет фона'}
-        options={backgroundColors}
-        selected={selectedOptions.backgroundColor}
-        onChange={(backgroundColor) => {
-          setSelectedOptions({
-            ...selectedOptions,
-            backgroundColor: backgroundColor,
-          });
-        }}
-      /> -->
+      <Select
+        title="цвет фона"
+        :options="backgroundColors"
+        :selected="selectedOptions.bgColor"
+        @onChange="handleSetBgColor"
+      />
 
-      <!-- <Select
-        title={'ширина контента'}
-        options={contentWidthArr}
-        selected={selectedOptions.contentWidth}
-        onChange={(contentWidth) => {
-          setSelectedOptions({
-            ...selectedOptions,
-            contentWidth: contentWidth,
-          });
-        }}
-      /> -->
+      <Select
+        title="ширина контента"
+        :options="contentWidthArr"
+        :selected="selectedOptions.containerWidth"
+        @onChange="handleSetContainerWidth"
+      />
 
       <div class="bottomContainer">
-        <!-- <Button title='Сбросить' type='apply' onClick={handleFormReset} />
-        <Button title='Применить' type='clear' /> -->
+        <Button title='Сбросить' type='apply' @onClick={handleFormReset} />
+        <Button title='Применить' type='clear' />
       </div>
     </form>
   </aside>

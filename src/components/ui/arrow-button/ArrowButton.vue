@@ -17,7 +17,7 @@ const emit = defineEmits(['onClick']);
     aria-label='Открыть/Закрыть форму параметров статьи'
     tabIndex="0"
     :class="`containerBtn ${isOpen && 'containerBtn_open'}`"
-    @click="$emit('onClick')"
+    @click="emit('onClick')"
   >
     <img
       :src="arrow"
