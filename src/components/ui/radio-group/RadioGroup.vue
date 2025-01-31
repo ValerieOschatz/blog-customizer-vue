@@ -12,7 +12,10 @@ interface IRadioGroupProps {
 
 defineProps<IRadioGroupProps>();
 const emit = defineEmits(['onChange']);
-const handleChange = (option: OptionType) => emit('onChange', option);
+
+const handleChange = (option: OptionType) => {
+  emit('onChange', option);
+}
 </script>
 
 <template>

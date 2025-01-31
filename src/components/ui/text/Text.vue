@@ -24,22 +24,23 @@ const props = withDefaults(defineProps<ITextProps>(), {
 	family: 'open-sans',
 	dynamicLite: false
 })
-
-const classNames = `
-  text
-  size${props.size}
-  ${props.dynamic ? 'dynamic' : ''}
-  weight${props.weight}
-  ${props.fontStyle}
-  ${props.uppercase ? 'uppercase' : ''}
-  ${props.align}
-  ${props.family}
-  ${props.dynamicLite ? 'dynamicLite' : ''}
-`
 </script>
 
 <template>
-<component :is="tagName" :class="classNames">
+<component
+	:is="tagName"
+	:class=" `
+		text
+		size${props.size}
+		${props.dynamic ? 'dynamic' : ''}
+		weight${props.weight}
+		${props.fontStyle}
+		${props.uppercase ? 'uppercase' : ''}
+		${props.align}
+		${props.family}
+		${props.dynamicLite ? 'dynamicLite' : ''}
+	`"
+>
   <slot></slot>
 </component>
 </template>

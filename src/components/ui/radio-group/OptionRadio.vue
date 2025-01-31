@@ -12,7 +12,6 @@ interface IOptionProps {
 
 const props = defineProps<IOptionProps>();
 const emit = defineEmits(['onChange']);
-const isChecked = props.value === props.selected.title;
 const inputId = `${props.groupName}_radio_item_with_value__${props.value}`;
 const handleChange = () => emit('onChange', props.option);
 </script>
@@ -21,7 +20,7 @@ const handleChange = () => emit('onChange', props.option);
   <div
     class="item"
     :key="value"
-    :data-checked="isChecked"
+    :data-checked="value === selected.title"
     :tabIndex="0"
   >
     <input

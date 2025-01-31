@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { useStylesStore } from '../../store/stylesStore';
 import ArrowButton from '../ui/arrow-button/ArrowButton.vue';
 import Text from '../ui/text/Text.vue';
@@ -12,23 +12,66 @@ import {
   fontSizeOptions,
   fontColors,
   backgroundColors,
-  contentWidthArr
+  contentWidthArr,
+  type OptionType
 } from '../../utils/data/articleProps';
 
-const isOpen = ref(false);
 const selectedOptions = useStylesStore();
+const isOpen = ref(false);
+
+const option = {
+  title: '',
+	className: '',
+	optionClassName: '',
+	value: ''
+}
+const selectedFontFamily = reactive({...option});
+const selectedFontSize = reactive({...option});
+const selectedFontColor = reactive({...option});
+const selectedBgColor = reactive({...option});
+const selectedContainerWidth = reactive({...option});
 
 const handleClickArrow = () => {
   isOpen.value = !isOpen.value;
 }
 
+const setSelectedOption = (selectedOption: OptionType, option: OptionType) => {
+	selectedOption.title = option.title;
+	selectedOption.className = option.className;
+	selectedOption.optionClassName = option.optionClassName;
+	selectedOption.value = option.value;
+}
+
+const handleSetFont = (option: OptionType) => {
+  setSelectedOption(selectedFontFamily, option);
+}
+
+const handleSetFontSize = (option: OptionType) => {
+  setSelectedOption(selectedFontSize, option);
+}
+
+const handleSetFontColor = (option: OptionType) => {
+  setSelectedOption(selectedFontColor, option);
+}
+
+const handleSetBgColor = (option: OptionType) => {
+  setSelectedOption(selectedBgColor, option);
+}
+
+const handleSetContainerWidth = (option: OptionType) => {
+  setSelectedOption(selectedContainerWidth, option);
+}
+
 const handleFormSubmit = () => {}
-const handleSetFont = () => {}
-const handleSetFontSize = () => {}
-const handleSetFontColor = () => {}
-const handleSetBgColor = () => {}
-const handleSetContainerWidth = () => {}
 const handleFormReset = () => {}
+
+onMounted(() => {
+  setSelectedOption(selectedFontFamily, selectedOptions.fontFamily);
+  setSelectedOption(selectedFontSize, selectedOptions.fontSize);
+  setSelectedOption(selectedFontColor, selectedOptions.fontColor);
+  setSelectedOption(selectedBgColor, selectedOptions.bgColor);
+  setSelectedOption(selectedContainerWidth, selectedOptions.containerWidth);
+})
 </script>
 
 <template>
@@ -45,7 +88,7 @@ const handleFormReset = () => {}
       <Select
         title="шрифт"
         :options="fontFamilyOptions"
-        :selected="selectedOptions.fontFamily"
+        :selected="selectedFontFamily"
         @onChange="handleSetFont"
       />
 
@@ -53,14 +96,14 @@ const handleFormReset = () => {}
         name="FontSize"
         title="размер шрифта"
         :options="fontSizeOptions"
-        :selected="selectedOptions.fontSize"
+        :selected="selectedFontSize"
         @onChange="handleSetFontSize"
       />
 
       <Select
         title="цвет шрифта"
         :options="fontColors"
-        :selected="selectedOptions.fontColor"
+        :selected="selectedFontColor"
         @onChange="handleSetFontColor"
       />
 
@@ -69,14 +112,14 @@ const handleFormReset = () => {}
       <Select
         title="цвет фона"
         :options="backgroundColors"
-        :selected="selectedOptions.bgColor"
+        :selected="selectedBgColor"
         @onChange="handleSetBgColor"
       />
 
       <Select
         title="ширина контента"
         :options="contentWidthArr"
-        :selected="selectedOptions.containerWidth"
+        :selected="selectedContainerWidth"
         @onChange="handleSetContainerWidth"
       />
 
