@@ -27,7 +27,7 @@ const emit = defineEmits(['onClick']);
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .containerBtn {
 	position: fixed;
 	top: 31px;

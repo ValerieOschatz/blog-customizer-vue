@@ -4,22 +4,27 @@ import Text from '../text/Text.vue';
 interface IButtonProps {
 	title: string,
 	htmlType?: "button" | "submit" | "reset" | undefined,
-	type: 'apply' | 'clear';
+	type: 'button' | 'submit';
 }
 
 defineProps<IButtonProps>();
 const emit = defineEmits(['onClick']);
+
+const handleClick = (evt: MouseEvent) => {
+  evt.preventDefault();
+  emit('onClick');
+}
 </script>
 
 <template>
   <button
     :class="`
       button
-      ${type === 'apply' && 'button_apply'}
-      ${type === 'clear' && 'button_clear'}
+      ${type === 'submit' && 'button_apply'}
+      ${type === 'button' && 'button_clear'}
     `"
     :type="htmlType"
-    @click="emit('onClick')"
+    @click="handleClick"
   >
     <Text :weight="800" uppercase>
       {{ title }}
@@ -27,7 +32,7 @@ const emit = defineEmits(['onClick']);
   </button>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .button {
 	display: flex;
 	justify-content: center;

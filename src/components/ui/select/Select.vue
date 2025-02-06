@@ -30,7 +30,7 @@ const handleOutsideClick = (evt: MouseEvent) => {
 	if (!isOpen.value) return;
 	const target = evt.target as Element;
 
-	if (!target.closest('.selectWrapper')) {
+	if (!target.closest('.selectWrapper_open')) {
 		isOpen.value = false;
 	}
 }
@@ -51,7 +51,7 @@ onBeforeUnmount(() => {
     </Text>
 
     <div
-      class="selectWrapper"
+      :class="`selectWrapper ${isOpen && 'selectWrapper_open'}`"
       :data-is-active="isOpen"
       data-testid='selectWrapper'
     >

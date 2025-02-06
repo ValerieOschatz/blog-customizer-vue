@@ -44,14 +44,14 @@ import plane from '../../assets/images/plane.png';
   </article>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .article {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	row-gap: 24px;
-	max-width: 1394px;
+	max-width: var(--container-width, auto);
 	margin: 0 auto;
 	padding: 72px 0 144px;
 }

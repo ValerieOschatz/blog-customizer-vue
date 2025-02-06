@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<ITextProps>(), {
 <template>
 <component
 	:is="tagName"
-	:class=" `
+	:class="`
 		text
 		size${props.size}
 		${props.dynamic ? 'dynamic' : ''}
@@ -45,14 +45,18 @@ const props = withDefaults(defineProps<ITextProps>(), {
 </component>
 </template>
 
-<style scoped>
-.text {
-  color: #000000;
-	font-weight: 400;
-	font-size: 18px;
-	font-family: 'Open Sans';
+<style scoped lang="scss">
+@mixin typography($size: 18, $weight: 400, $family: 'Open Sans') {
+	color: #000000;
+	font-weight: $weight;
+	font-size: $size;
+	font-family: $family;
 	line-height: normal;
 	letter-spacing: 0;
+}
+
+.text {
+	@include typography(18, 400, 'Open Sans');
 }
 
 .open-sans {
@@ -131,14 +135,19 @@ const props = withDefaults(defineProps<ITextProps>(), {
 	font-style: italic;
 }
 
+// для динамических типографий, используем константы, которые будут меняться
+
 .dynamic {
-	color: #000000;
-	font-size: 18px;
-	font-family: 'Open Sans';
+	color: var(--font-color, #000000);
+	font-size: var(--font-size, 18px);
+	font-family: var(--font-family, 'Open Sans');
 }
 
+// для заголовка и подзаголовка рамер шрифта одинаковый, меняется только цвет и семейство шрифтов
+
 .dynamicLite {
-	color: #000000;
-	font-family: 'Open Sans';
+	color: var(--font-color, #000000);
+	font-family: var(--font-family, 'Open Sans');
 }
+
 </style>
