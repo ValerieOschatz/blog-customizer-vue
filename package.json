@@ -1,5 +1,6 @@
 {
-  "name": "blog-customizer",
+  "name": "blog-customizer-vue",
+  "homepage": "https://valerieoschatz.github.io/blog-customizer-vue",
   "private": true,
   "version": "0.0.0",
   "type": "module",
